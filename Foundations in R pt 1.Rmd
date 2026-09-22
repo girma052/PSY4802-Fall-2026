@@ -322,6 +322,11 @@ Amanda Woodward
 -   Make sure your names mean something (slgahwgh may help you get our
     your frustration out- but you won't remember what it means later and
     neither will your collaborators)
+    
+  iLikeCookies
+  i_like_cookies
+  ILIKECOOKIES
+  ilikecookies
 
 **Variables**
 
@@ -329,8 +334,10 @@ Variables store one thing in R (it can be a number, a word, or whatever
 you want)
 
 ```{r}
-
+cookie<- "chocolate chip"
+eatCookies <- 8
 ```
+
 
 *Aside: `c()` means combine. you can put stuff in parentheses and use a
 comma to separate it and have it print together
@@ -344,8 +351,10 @@ function- `c()`.
 
 ```{r}
 "numeric"
-
+earlyToClass <- c(1, 60, -5, 5, 15, 10, 1)
+earlyToClass
 "character"
+breakfast <- c("waffles", "yogurt", "nothing", "cereal", "apple cider donut")
 
 ```
 
@@ -353,21 +362,29 @@ If you want to call one of the things you saved in a vector, you can
 write `vectorName[position of thing]`
 
 ```{r}
-
+breakfast[3]
 ```
 
 **Dataframes** Data frames are made from multiple vectors. There are
 preloaded datasets in R we can use to practice, such as mtcars:
 
 ```{r}
-
+data(mtcars)
+# do ?mtcars in the console to learn abt variables from preloaded data set
 ```
 
 ### Practice:
 
 1)Make a vector with 6 animals
+```{r}
+animals <- c("lion", "dog", "cat", "panda", "deer", "otter")
+```
+
 
 2)Make a vector of the number of cookies you think each animal could eat
+```{r}
+animalsEatCookies <- c(30, 0, 1, 8, 4, 2)
+```
 
 We can also combine vectors into a dataframe using R functions
 (`cbind.data.frame()` or `rbind.data.frame()`). We'll use the vectors we
