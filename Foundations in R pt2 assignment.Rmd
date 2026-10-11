@@ -39,15 +39,14 @@ head(billboard, 5)
 JayZSongs <- billboard %>% filter(artist == "Jay-Z")
 JayZSongs
 View(JayZSongs)
-#There are 5 songs in this subset
 ```
+#There are 5 songs in this subset
 
 2. In the original dataset, use filter to find information about the song "All the small things." What was the highest position (i.e. lowest number) this song reached on the billboard 100? 
 ```{r}
 SongInfo <- billboard %>% filter(track == "All The Small Things")
-
-#6 was the highest position this song reached, determined by selecting view and looking through the data.
 ```
+#6 was the highest position this song reached, determined by selecting view and looking through the data.
 
 3. Create a subset of data for songs Tim McGraw sang. Summarize the data for wk 1.
 ```{r}
@@ -92,5 +91,5 @@ billboard$topFiftyIfElse <- ifelse(billboard$wk1<= 50, "below", "above")
 ```
 
 8. Compare your results in 6 and 7. 
-The for loop produces TRUE if the song placed above 50 in week 1 and FALSE if not. The ifelse statement provides an easier to understand output of above or below when the song placed above 50 or less than or equal to 50 in week 1. 
+#The for loop produces TRUE if the song placed above 50 in week 1 and FALSE if not. The ifelse statement provides an easier to understand output of above or below when the song placed above 50 or less than or equal to 50 in week 1. 
 
