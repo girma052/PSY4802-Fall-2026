@@ -63,6 +63,10 @@ BritneySpearsSongs <- function(song){
 }
 
 ```
+AW comment: I think you can drop the track part of this. you could do something like: 
+function(artist){
+artist=="Spears, Britney"
+}
 
 5. Test your function on the billboard data. Save the results to a new column called "wasItBritney"
 ```{r}
@@ -91,4 +95,4 @@ billboard$topFiftyIfElse <- ifelse(billboard$wk1<= 50, "below", "above")
 
 8. Compare your results in 6 and 7. 
 #The for loop produces TRUE if the song placed in the top 50 in week 1 and FALSE if not. The ifelse statement provides an easier to understand output of above or below when the song placed above 50 or less than or equal to 50 in week 1. 
-
+nice job! 
