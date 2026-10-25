@@ -58,8 +58,8 @@ summary(TimMcGrawSongs$wk1)
 4. Create a function that can be used to determine if Britney Spears sang the song. 
 ```{r}
 
-BritneySpearsSongs <- function(song){
-  ifelse(song == billboard$track & billboard$artist == "Spears, Britney", "yes", "no")
+BritneySpearsSongs <- function(artist){
+  ifelse(artist == "Spears, Britney", "yes", "no")
 }
 
 ```
@@ -67,7 +67,7 @@ BritneySpearsSongs <- function(song){
 5. Test your function on the billboard data. Save the results to a new column called "wasItBritney"
 ```{r}
 billboard$wasItBritney <- NA
-billboard$wasItBritney <- BritneySpearsSongs("Lucky")
+billboard$wasItBritney <- BritneySpearsSongs(billboard$artist)
 
 ```
 
