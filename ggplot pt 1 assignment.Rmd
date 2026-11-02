@@ -1,0 +1,55 @@
+---
+title: "ggplot pt 1 assignment"
+author: "Helen Girma"
+date: "2026-10-29"
+output: html_document
+---
+1. open the starwars dataset in tidyverse
+```{r}
+data(starwars)
+```
+
+2. create a graph showing the frequency of eye colors in the dataset. 
+```{r}
+ggplot(starwars, aes(eye_color))+geom_bar()
+```
+
+
+3. Customize your graph to make it more presentable. Consider color, backgrounds, axes, etc. 
+```{r}
+ggplot(starwars, aes(eye_color))+geom_bar(fill = "lightblue")+theme_apa()+xlab("Eye Color") + ylab("Frequency")+ggtitle("Eye Color Frequency")
+```
+
+4. Create a graph displaying information about character's height in each homeworld. 
+```{r}
+ggplot(starwars, aes(homeworld, height))+geom_boxplot()
+
+```
+
+5. Customize your graph to make it more presentable. Consider color, backgrounds, axes, etc.
+```{r}
+ggplot(starwars, aes(homeworld, height))+geom_boxplot(fill ="grey", color = "black")+theme_apa() + xlab("Homeworld")+ylab("Height")+ggtitle("Character's Height in Each Homeworld")
+```
+
+6. Create a graph of character's height by mass. 
+```{r}
+ggplot(starwars, aes(height, mass))+geom_point()
+```
+
+7.Customize your graph to make it more presentable. Consider color, backgrounds, axes, etc.
+```{r}
+ggplot(starwars, aes(height, mass))+geom_point(color = "darkorchid4")+geom_smooth(method = "lm", linetype = "dashed", color = "black")+xlab("Height")+ylab("Mass")+theme_apa()+ ggtitle("Star Wars Character's Height by Mass")
+
+```
+
+8. Add gender as a third variable to your graph of height by mass. 
+```{r}
+ggplot(starwars, aes(height, mass, color = gender))+geom_point()
+```
+
+
+9. Customize your graph to make it more presentable. Consider color, backgrounds, axes, etc.
+```{r}
+ggplot(starwars, aes(height, mass, color = gender))+geom_point(na.rm = TRUE)+scale_color_manual(values = c("violet", "darkorchid"), na.translate = FALSE) + xlab("Height")+ylab("Mass")+theme_apa()+ ggtitle("Star Wars Character's Height by Mass") + geom_smooth(method = "lm", linetype = "dashed", color = "black")
+```
+
