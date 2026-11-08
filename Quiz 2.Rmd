@@ -1,0 +1,75 @@
+---
+title: "Quiz 2"
+author: "Helen Girma"
+date: "2026-11-03"
+output: html_document
+---
+
+This quiz will focus on data frame manipulation, however, you may need to rely on skills you've learned in prior weeks. 
+
+1. load the starwars dataset from tidyverse
+```{r}
+library(tidyverse)
+data(starwars)
+```
+
+2. separate the films column so that there is one film in each column (don't worry about the "c(" and ) at the end for now)
+```{r}
+summary(starwars)
+#highest number of films is 7, so I made 7 columns
+starwarsFilmsDat <- starwars %>% separate(films, into = c("Film 1", "Film 2","Film 3", "Film 4", "Film 5", "Film 6", "Film 7"), sep = ",")
+
+```
+
+
+3. alter the data from wide data to long data
+```{r}
+starwarsFilmsLong <- starwarsFilmsDat %>% pivot_longer(cols = c("Film 1", "Film 2", "Film 3", "Film 4", "Film 5", "Film 6", "Film 7"), names_to = "films", values_to = "titles", values_drop_na = TRUE)
+```
+
+4. in the column where you stored the films, rename the levels so each film name is consistent (e.g. get rid of the "c(" and ")" )
+```{r}
+
+starwarsFilmsLong <- starwarsFilmsLong %>% mutate(titles = as.factor(titles))
+
+levels(starwarsFilmsLong$titles) <- c("Attack of the Clones", "Attack of the Clones", "Return of the Jedi", "Return of the Jedi", "Revenge of the Sith", "Revenge of the Sith", "The Empire Strikes Back", "The Force Awakens", "The Phantom Menace", "The Phantom Menace","A New Hope","Attack of the Clones","A New Hope","Attack of the Clones","Return of the Jedi","The Empire Strikes Back","The Phantom Menace","Return of the Jedi","Revenge of the Sith","The Empire Strikes Back","The Force Awakens","The Phantom Menace")
+```
+
+5. Create a column in your dataset that indicates whether a character was in the first starwars film, *Star Wars Episode IV: A New Hope* 
+```{r}
+starwarsFilmsLong$firstFilm <- NA
+starwarsFilmsLong$titles <- as.character(starwarsFilmsLong$titles)
+
+for(i in 1:nrow(starwarsFilmsLong)){
+  if(starwarsFilmsLong$titles[i]=="A New Hope"){
+    starwarsFilmsLong$firstFilm[i]<- "yes"
+  }
+  else{starwarsFilmsLong$firstFilm[i] <- "no"}
+  }
+#attempted one for loop, but this did not report if a character was in the first film just if that row was the first film
+
+for(i in 1:nrow(starwarsFilmsLong)){
+  for(j in 1:nrow(starwarsFilmsLong)){
+    if(starwarsFilmsLong$name[i] == starwarsFilmsLong$name[j] &
+       starwarsFilmsLong$titles[j] == "A New Hope"){
+      starwarsFilmsLong$firstFilm[i] <- "yes"
+    }
+  }
+}
+
+#attempted a nested for loop
+```
+
+6. BMI is calculated as mass in Kg/height in meters squared. You currently have mass in Kg and height in cm. Create a column that contains each character's BMI. 
+```{r}
+starwarsFilmsLong <- starwarsFilmsLong %>% mutate(height = height/100) 
+#changes height column from cm to meters
+starwarsFilmsLong <- starwarsFilmsLong %>% mutate(BMI = mass/(height^2))
+#adds BMI column
+```
+
+7. create a dataframe that contains only the name, hair color, and eye color for each character. 
+```{r}
+starwarsSubset <- starwars %>% select (name, hair_color, eye_color)
+```
+
