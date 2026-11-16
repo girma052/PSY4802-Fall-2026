@@ -8,6 +8,7 @@ output: html_document
 ```{r}
 data(starwars)
 ```
+Aw comment: need to open tidyverse
 
 2. create a graph showing the frequency of eye colors in the dataset. 
 ```{r}
