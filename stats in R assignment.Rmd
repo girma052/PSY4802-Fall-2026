@@ -25,7 +25,6 @@ cor.test(diamonds$price, diamonds$carat)
 
 4. Create a linear model predicting price from table. What is the coefficient for table? 
 ```{r}
-```{r}
 lmDiamonds <- lm(price ~ table, data = diamonds)
 summary(lmDiamonds)
 #the coefficient for table is 226.984
@@ -49,7 +48,7 @@ diamondsWide <- pivot_wider(diamondsWide, id_cols = id, names_from = color, valu
 
 t.test(diamondsWide$D, diamondsWide$E, alternative = "greater")
 
-#insert part about asking how to add a id number so that you could pivot wider and do the t.test
+#Looking at our stats in R notes, we changed the sleep data set to be in a wide format and then completed the t test. I attempted a similar approach with the diamonds data set however there is not id column for each diamond, so I Googled ways to add an id column. I found the row_number function.
 ```
 
 7. Open the warpbreaks dataset. What test would you use to determine the correlation between wool type and breaks?
