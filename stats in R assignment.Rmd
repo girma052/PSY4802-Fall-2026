@@ -1,0 +1,78 @@
+---
+title: "Statistics in R Assignment"
+author: "Helen Girma"
+output: html_document
+date: "2026-11-18"
+---
+
+1. Open the diamonds dataset from ggplot2.   
+```{r}
+library(tidyverse)
+data(diamonds)
+```
+
+2. Run a correlation between the x and y variables. What do you notice? 
+```{r}
+cor.test(diamonds$x, diamonds$y)
+#There is a strong positive correlation between the x and y variables. The p-value is extremely small, there is a 95% confidience interval.
+```
+
+3. What is the correlation between price and carat?
+```{r}
+cor.test(diamonds$price, diamonds$carat)
+#r= .92, strong positive correlation
+```
+
+4. Create a linear model predicting price from table. What is the coefficient for table? 
+```{r}
+```{r}
+lmDiamonds <- lm(price ~ table, data = diamonds)
+summary(lmDiamonds)
+#the coefficient for table is 226.984
+```
+
+
+5. Run a regression and an Anova predicting price from color. What do you notice about the two types of output? 
+```{r}
+lmD2 <- lm(price ~ color, data = diamonds)
+summary(lmD2)
+
+Anova(lm(price ~ color, data = diamonds))
+#The regression out put is longer and contains information for each of the colors as coefficients, the ANOVA produces color as a whole. The regression also produces an r squared value while the ANOVA does not. 
+```
+
+6. Run a t test to determine if "D" color diamonds are more expensive than "E" color diamonds. 
+```{r}
+diamondsWide <- diamonds %>% mutate(id = row_number())
+
+diamondsWide <- pivot_wider(diamondsWide, id_cols = id, names_from = color, values_from = price)
+
+t.test(diamondsWide$D, diamondsWide$E, alternative = "greater")
+
+#insert part about asking how to add a id number so that you could pivot wider and do the t.test
+```
+
+7. Open the warpbreaks dataset. What test would you use to determine the correlation between wool type and breaks?
+```{r}
+data(warpbreaks)
+#I would use a biserial correlation
+```
+
+8. What is the correlation between wool type and breaks? 
+```{r}
+library(ltm)
+levels(warpbreaks$wool) <- c(0,1)
+#type A wool = 0, type B wool = 1
+
+biserial.cor(warpbreaks$breaks, warpbreaks$wool)
+#The correlation is 0.220933
+```
+
+9. A student has a 35 question, multiple choice test. Each question has 4 choices. If they answered 17 questions correctly, did their responses differ from chance?  
+```{r}
+#binomial test
+
+binom.test(17, 35, p=.25)
+#Their responses did differ from chance as the p-value is less than 0.05.
+```
+
